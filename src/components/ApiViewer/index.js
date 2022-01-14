@@ -18,10 +18,14 @@ function CatViewer() {
   }
 
   return (
-    <div className="ApiViewer">
-      {catImage && <img src={catImage}></img>}
-      <button onClick={getCat}>Get a random cat picture!!</button>
-    </div>
+    <>
+      <div className="ApiViewer">
+        {catImage && <img className="photo" src={catImage}></img>}
+      </div>
+      <div>
+        <button onClick={getCat}>Get a random cat picture!!</button>
+      </div>
+    </>
   );
 }
 
