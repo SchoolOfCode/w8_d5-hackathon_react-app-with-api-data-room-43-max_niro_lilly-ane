@@ -4,6 +4,7 @@ import './ApiViewer.css';
 
 function CatViewer() {
   let [catImage, setCatImage] = useState(null);
+  let [catImageState, setCatImageState] = useState(false);
 
   // 3. Create out useEffect function
   useEffect(() => {
@@ -11,11 +12,11 @@ function CatViewer() {
       .then((response) => response.json())
       // 4. Setting *catimage* to the image url that we received from the response above
       .then((data) => setCatImage(data[0].url));
-  }, []);
+  }, [catImageState]);
 
   function getCat() {
-    // setCatImage(false);
-    window.location.reload(true);
+    setCatImageState(!catImageState);
+    // window.location.reload(true);
   }
 
   return (

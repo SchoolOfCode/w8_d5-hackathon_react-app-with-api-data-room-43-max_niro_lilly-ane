@@ -3,6 +3,7 @@ import './FactViewer.css';
 
 function CatFact() {
   let [catFact, setCatFact] = useState(null);
+  let [catFactState, setCatFactState] = useState(false);
 
   // 3. Create out useEffect function
   useEffect(() => {
@@ -10,10 +11,10 @@ function CatFact() {
       .then((response) => response.json())
 
       .then((data) => setCatFact(data.text));
-  }, []);
+  }, [catFactState]);
 
   function getFact() {
-    window.location.reload(true);
+    setCatFactState(!catFactState);
   }
 
   return (
