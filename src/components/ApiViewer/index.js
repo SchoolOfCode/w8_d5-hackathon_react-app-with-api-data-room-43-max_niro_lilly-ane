@@ -1,24 +1,26 @@
+// 1. Import *useState* and *useEffect*
 import React, { useState, useEffect } from 'react';
+import './ApiViewer.css';
 
 function CatViewer() {
-  const [cat, setCat] = useState();
+  let [catImage, setCatImage] = useState(null);
+
+  // 3. Create out useEffect function
   useEffect(() => {
-    async function getData() {
-      const response = await fetch(
-        `https://api.thecatapi.com/v1/images/search`
-      );
-      const data = await response.json();
-      setCat(data);
-      console.log(data);
-    }
-    if (CatViewer !== undefined) {
-      getData();
-    }
+    fetch('https://api.thecatapi.com/v1/images/search')
+      .then((response) => response.json())
+      // 4. Setting *catimage* to the image url that we received from the response above
+      .then((data) => setCatImage(data[0].url));
   }, []);
+
+  function getCat() {
+    window.location.reload(true);
+  }
+
   return (
-    <div className="cat-viewer">
-      <h1>Random cat picture for your enjoyment</h1>
-      {cat && <img src={cat.data[0].url}></img>}
+    <div className="ApiViewer">
+      {catImage && <img src={catImage}></img>}
+      <button onClick={getCat}>Get a random cat picture!!</button>
     </div>
   );
 }
