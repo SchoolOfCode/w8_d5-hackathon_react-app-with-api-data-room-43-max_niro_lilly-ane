@@ -14,6 +14,7 @@ function CatViewer() {
   }, []);
 
   function getCat() {
+    // setCatImage(false);
     window.location.reload(true);
   }
 
